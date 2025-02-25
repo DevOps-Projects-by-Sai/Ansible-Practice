@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Create a new user
+      ansible.builtin.user:
+        name: ansible-user
+        create_home: true
+        generate_ssh_key: true
+
+    - name: Remove a User
+      ansible.builtin.user:
+        name: ansible-user
+        state: absent
+        remove: true
