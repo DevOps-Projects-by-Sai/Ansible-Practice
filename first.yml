@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Update vibes
+      ansible.builtin.shell: sudo apt update
+
+    - name: Add repository
+      expect:
+        command: sudo apt-add-repository ppa:ansible/ansible
+        responses:
+          'Repository:' : 'y'
+
+    - name: Install Ansible
+      ansible.builtin.shell: sudo apt install ansible
